@@ -1,0 +1,39 @@
+// Regular ES6 template literal
+const str = name => `My dog is called ${name}`;
+str('Wallace'); // My dog is called Wallace
+
+// more interesting real example
+const markup = ReactDOMServer.renderToString(<HTML />)
+const html = `
+<!DOCTYPE html>
+<html>
+{markup}
+</html>
+`;
+// return html
+
+// ES6 Tagged Template Literal
+const content = 'Wallace rules';
+const heading = 'Who rules?'
+
+const html = (template, ...expressions) => template.reduce((acc, v, i) =>
+  `${acc}${expressions[i - 1].toUpperCase()}${v}`
+);
+
+const result = html`
+<div>
+  <h1>${heading}</h1>
+  ${content}
+</div>
+`;
+
+// template is ['<div>','<h1>', '</h1>', '</div>']
+// expressions are ['who rules?', 'wallace rules']
+
+// result
+/*
+<div>
+  <h1>WHO RULES?</h1>
+  WALLACE RULES
+</div>
+*/
